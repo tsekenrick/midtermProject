@@ -8,15 +8,20 @@ public class charControl : MonoBehaviour {
     public bool sprinting;
     public bool fatigued;
 
+    public float staminaCap;
     public float stamina;    
     public float sprintTimer;
+    public float recoveryCap;
     public float recoveryRate;
     public float recoveryTimer;
-    
+    public float wasFatigued;
 	// Use this for initialization
 	void Start () {
         cc = GetComponent<CharacterController>();
-        
+        staminaCap = 3f;
+        stamina = 3f;
+        recoveryCap = 5f;
+        recoveryRate = 5f;
 	}
 	//to do - head bob - more headbob on sprint. fatigue mechanic.
 	// Update is called once per frame
@@ -28,44 +33,49 @@ public class charControl : MonoBehaviour {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && fatigued == false)
+        if (Input.GetKey(KeyCode.LeftShift) && fatigued == false)
         {
             sprinting = true;
-            stamina = Time.time + 3f;
+            stamina -= Time.deltaTime;
+            //stamina = Time.time + 3f;
         }
         
-        if (Input.GetKeyUp(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift) == false) 
         {
             sprinting = false;
-            stamina = 0f;
+            if (stamina < staminaCap)
+            {
+                stamina += Time.deltaTime;
+            }
+            
         }
 
         //set movespeed depending on player state
         if (sprinting)
         {
             moveSpeed = 12f;
-            sprintTimer = Time.time;
+            //sprintTimer = Time.time;
 
-            if (sprintTimer > stamina)
+            if (stamina <= 0)
             {
                 sprinting = false;
-                fatigued = true;
-                recoveryRate = Time.time + 5f;
-                sprintTimer = 0;
+                fatigued = true;               
+                //sprintTimer = 0;
             }
         }
 
         if (fatigued)
         {
+            recoveryRate -= Time.deltaTime;
             moveSpeed = 3f;
             PlayerPrefs.SetInt("wasFatigued", 1);
-            recoveryTimer = Time.time;
+            //recoveryTimer = Time.time;
             sprinting = false;
 
-            if (recoveryTimer > recoveryRate)
+            if (recoveryRate <= 0)
             {
                 fatigued = false;
-                recoveryTimer = 0;
+                recoveryRate = recoveryCap;
             }
         }
 
