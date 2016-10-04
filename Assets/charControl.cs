@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class charControl : MonoBehaviour {
     CharacterController cc;
@@ -14,7 +15,9 @@ public class charControl : MonoBehaviour {
     public float recoveryCap;
     public float recoveryRate;
     public float recoveryTimer;
-    public float wasFatigued;
+
+    public static int wasFatigueds1;
+    public static int wasFatigueds2;
 	// Use this for initialization
 	void Start () {
         cc = GetComponent<CharacterController>();
@@ -22,6 +25,18 @@ public class charControl : MonoBehaviour {
         stamina = 3f;
         recoveryCap = 5f;
         recoveryRate = 5f;
+
+        if (wasFatigueds1 == 1)
+        {
+            stamina += 2;
+        }
+
+        if (wasFatigueds2 == 1)
+        {
+            stamina += 2;
+        }
+        
+
 	}
 	//to do - head bob - more headbob on sprint. fatigue mechanic.
 	// Update is called once per frame
@@ -68,7 +83,17 @@ public class charControl : MonoBehaviour {
         {
             recoveryRate -= Time.deltaTime;
             moveSpeed = 3f;
-            PlayerPrefs.SetInt("wasFatigued", 1);
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                //PlayerPrefs.SetInt("wasFatigued", 1);
+                wasFatigueds1 = 1;
+            }
+
+            else if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                wasFatigueds2 = 1;
+            }
+            
             //recoveryTimer = Time.time;
             sprinting = false;
 
