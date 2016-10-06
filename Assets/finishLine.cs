@@ -15,6 +15,8 @@ public class finishLine : MonoBehaviour {
         //scene = SceneManager.GetActiveScene();
         if (Input.GetKey(KeyCode.T))
         {
+            //PlayerPrefs.SetInt("wasFatigueds1", 0);
+            //PlayerPrefs.SetInt("wasFatigueds1", 0);
             //SceneManager.LoadScene(scene.name);
             SceneManager.LoadScene(0);
         }

@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class charControl : MonoBehaviour {
     CharacterController cc;
-    float jumpTimer;
     public float moveSpeed;
     public bool sprinting;
     public bool fatigued;
@@ -15,38 +14,49 @@ public class charControl : MonoBehaviour {
     public float recoveryCap;
     public float recoveryRate;
     public float recoveryTimer;
+    public float regenRate;
 
     public static int wasFatigueds1;
     public static int wasFatigueds2;
 	// Use this for initialization
 	void Start () {
         cc = GetComponent<CharacterController>();
+        regenRate = Time.deltaTime;
         staminaCap = 3f;
         stamina = 3f;
         recoveryCap = 5f;
         recoveryRate = 5f;
-
-        if (wasFatigueds1 == 1)
+        if (wasFatigueds1 != 1) wasFatigueds1 = 0;
+        if (wasFatigueds2 != 1) wasFatigueds2 = 0;
+      
+        if (wasFatigueds1 == 0 && (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2))
         {
-            stamina += 2;
+            //stamina += 2;
+            staminaCap += 2;
+            regenRate = 4f * Time.deltaTime;
         }
 
-        if (wasFatigueds2 == 1)
+        if (wasFatigueds2 == 0 && (SceneManager.GetActiveScene().buildIndex == 2))
         {
-            stamina += 2;
-        }
-        
+            //stamina += 2;
+            staminaCap += 2;
+            regenRate = 6f * Time.deltaTime;
 
-	}
+        }
+
+    }
 	//to do - head bob - more headbob on sprint. fatigue mechanic.
 	// Update is called once per frame
     //use fixedupdate for rigidbody stuff
-	void Update () {      
-        
+	void Update () {
+        //wasFatigueds1 = PlayerPrefs.GetInt("wasFatigueds1");
+        //wasFatigueds2 = PlayerPrefs.GetInt("wasFatigueds2");
+
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
+
 
         if (Input.GetKey(KeyCode.LeftShift) && fatigued == false)
         {
@@ -60,7 +70,7 @@ public class charControl : MonoBehaviour {
             sprinting = false;
             if (stamina < staminaCap)
             {
-                stamina += Time.deltaTime;
+                stamina += regenRate;
             }
             
         }
@@ -81,11 +91,10 @@ public class charControl : MonoBehaviour {
 
         if (fatigued)
         {
-            recoveryRate -= Time.deltaTime;
+            recoveryRate -= regenRate;
             moveSpeed = 3f;
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
-                //PlayerPrefs.SetInt("wasFatigued", 1);
                 wasFatigueds1 = 1;
             }
 
@@ -94,7 +103,7 @@ public class charControl : MonoBehaviour {
                 wasFatigueds2 = 1;
             }
             
-            //recoveryTimer = Time.time;
+
             sprinting = false;
 
             if (recoveryRate <= 0)
@@ -112,15 +121,6 @@ public class charControl : MonoBehaviour {
         cc.SimpleMove(transform.forward * inputY * moveSpeed);
         cc.SimpleMove(transform.right * inputX * moveSpeed);
         transform.Rotate(0f, mouseX * 180f * Time.deltaTime, 0f);
-        //transform.Rotate(mouseY * -180f * Time.deltaTime, 0f, 0f);
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpTimer = Time.time + 1f;
-        }
 
-        if (Time.time < jumpTimer)
-        {
-            cc.Move(Vector3.up * .1f);
-        }*/
 	}
 }
