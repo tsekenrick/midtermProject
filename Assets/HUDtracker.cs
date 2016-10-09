@@ -13,5 +13,6 @@ public class HUDtracker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         stats.text = "Stamina: " + player.GetComponent<charControl>().stamina.ToString() + "\nRecovery: " + player.GetComponent<charControl>().recoveryRate.ToString();
+
 	}
 }
