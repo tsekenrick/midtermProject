@@ -45,20 +45,19 @@ public class charControl : MonoBehaviour
         if (wasFatigueds1 == 0 && (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().buildIndex == 2))
         {
             //stamina += 2;
-            staminaCap += 2;
-            regenRate = 4f * Time.deltaTime;
+            staminaCap += 1;
+            regenRate = 3f * Time.deltaTime;
         }
 
         if (wasFatigueds2 == 0 && (SceneManager.GetActiveScene().buildIndex == 2))
         {
             //stamina += 2;
-            staminaCap += 2;
-            regenRate = 6f * Time.deltaTime;
+            staminaCap += 1;
+            regenRate = 5f * Time.deltaTime;
 
         }
 
     }
-    //to do - head bob - more headbob on sprint. fatigue mechanic.
     // Update is called once per frame
     //use fixedupdate for rigidbody stuff
     void Update()
@@ -80,14 +79,14 @@ public class charControl : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.LeftShift) && fatigued == false)
+        if (Input.GetKey(KeyCode.LeftShift) && fatigued == false && canMove == true)
         {
             sprinting = true;
             stamina -= Time.deltaTime;
             //stamina = Time.time + 3f;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) == false)
+        if (Input.GetKey(KeyCode.LeftShift) == false || fatigued == true)
         {
             sprinting = false;
             if (stamina < staminaCap)
@@ -147,6 +146,12 @@ public class charControl : MonoBehaviour
             transform.Rotate(0f, mouseX * 180f * Time.deltaTime, 0f);
         }
 
+        if (Input.GetKeyDown(KeyCode.R) && (SceneManager.GetActiveScene().buildIndex == 3 || SceneManager.GetActiveScene().buildIndex == 4))
+        {
+            SceneManager.LoadScene(0);
+            wasFatigueds1 = 0;
+            wasFatigueds2 = 0;
+        }
 
     }
 }

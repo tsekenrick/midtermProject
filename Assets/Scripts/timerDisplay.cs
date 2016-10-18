@@ -20,12 +20,12 @@ public class timerDisplay : MonoBehaviour {
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            timerDisp.text = "Day 2 of training. \nTime left for track: " + timer.GetComponent<timer>().timer2.ToString();
+            timerDisp.text = "Day 2 of training. \nTime left for track: " + string.Format("{0:0.00}", timer.GetComponent<timer>().timer2);
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-            timerDisp.text = "Today's the day! Good luck! \nTime left for track: " + timer.GetComponent<timer>().timer3.ToString();
+            timerDisp.text = "Today's the day! Good luck! \nTime left for track: " + string.Format("{0:0.00}", timer.GetComponent<timer>().timer3);
         }
 
     }
