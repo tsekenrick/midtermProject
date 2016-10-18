@@ -15,7 +15,7 @@ public class fatigueDisplay : MonoBehaviour {
 	
         if (player.GetComponent<charControl>().fatigued == true)
         {
-            fatigueDisp.text = "You're fatigued! Recovery in " + player.GetComponent<charControl>().recoveryRate.ToString() + " seconds";
+            fatigueDisp.text = "You're fatigued! Recovery in " + string.Format("{0:0.00}", player.GetComponent<charControl>().recoveryRate) + " seconds";
         }
         else
         {

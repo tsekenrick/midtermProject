@@ -15,7 +15,7 @@ public class timerDisplay : MonoBehaviour {
 	void Update () {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            timerDisp.text = "Day 1 of training. \nTime left for track: " + timer.GetComponent<timer>().timer1.ToString();
+            timerDisp.text = "Day 1 of training. \nTime left for track: " + string.Format("{0:0.00}",timer.GetComponent<timer>().timer1);
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -28,11 +28,5 @@ public class timerDisplay : MonoBehaviour {
             timerDisp.text = "Today's the day! Good luck! \nTime left for track: " + timer.GetComponent<timer>().timer3.ToString();
         }
 
-    }
-
-    void SetCursorState()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

@@ -12,7 +12,7 @@ public class hudTracker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        stats.text = "Stamina: " + player.GetComponent<charControl>().stamina.ToString();
+        stats.text = "Stamina: " + string.Format("{0:0.00}", player.GetComponent<charControl>().stamina);
 
 	}
 }
