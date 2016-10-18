@@ -28,7 +28,7 @@ public class charControl : MonoBehaviour
         staminaCap = 3f;
         stamina = 3f;
         recoveryCap = 5f;
-        recoveryRate = 5f;
+        recoveryRate = 5f;     
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -65,6 +65,12 @@ public class charControl : MonoBehaviour
     {
         //wasFatigueds1 = PlayerPrefs.GetInt("wasFatigueds1");
         //wasFatigueds2 = PlayerPrefs.GetInt("wasFatigueds2");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");

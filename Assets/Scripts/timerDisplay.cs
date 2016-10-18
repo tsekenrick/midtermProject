@@ -29,4 +29,10 @@ public class timerDisplay : MonoBehaviour {
         }
 
     }
+
+    void SetCursorState()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

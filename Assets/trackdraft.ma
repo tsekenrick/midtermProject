@@ -1,6 +1,6 @@
 //Maya ASCII 2017 scene
 //Name: trackdraft.ma
-//Last modified: Thu, Oct 13, 2016 04:00:11 PM
+//Last modified: Sun, Oct 16, 2016 05:01:57 PM
 //Codeset: 1252
 requires maya "2017";
 requires -nodeType "type" -nodeType "vectorAdjust" -nodeType "vectorExtrude" "Type" "019";
@@ -14,13 +14,13 @@ fileInfo "license" "student";
 createNode transform -s -n "persp";
 	rename -uid "BCF45675-464F-3664-9094-E496C2A80862";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -18.717593651420131 39.560657580431098 -5.2679436260282841 ;
-	setAttr ".r" -type "double3" 302.06164727134728 260.19999999980286 0 ;
+	setAttr ".t" -type "double3" -11.242344247908553 20.053192465418388 11.659811383418067 ;
+	setAttr ".r" -type "double3" 312.86164727132126 311.79999999979538 -9.5435851168237504e-015 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "A9388705-48E3-4B0C-7EE7-D094AAD1D8F2";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999993;
-	setAttr ".coi" 37.586690300553649;
+	setAttr ".coi" 18.802866163493313;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -107,7 +107,7 @@ createNode mesh -n "typeMeshShape1Orig" -p "typeMesh1";
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode transform -n "pPipe2";
 	rename -uid "7E1393E0-4090-D97F-F2EA-0785C81D25D6";
-	setAttr ".t" -type "double3" 2.7909503108336264 4.610262065244692 7.1227409325032305 ;
+	setAttr ".t" -type "double3" 2.7909503108336264 4.6925917496682725 7.1227409325032305 ;
 createNode mesh -n "pPipeShape2" -p "pPipe2";
 	rename -uid "B8591D9D-477F-BAB7-1ADB-B5B2F8B4B649";
 	setAttr -k off ".v";
@@ -160,19 +160,19 @@ createNode mesh -n "pPipeShape3" -p "pPipe3";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "904919F1-4529-3E9E-C536-DEB6149913C7";
+	rename -uid "A127FADC-41B0-871A-1682-928E0313DF16";
 	setAttr -s 3 ".lnk";
 	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "F508AE3B-497A-2214-FE9C-3288FDA82DDC";
+	rename -uid "25ACA5EB-497F-63E8-2F2D-B9A669E80CD8";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "6E13FAA9-4B65-B3B5-8F96-04A58D1F75A8";
+	rename -uid "2BACD980-40DD-7236-CEFC-969852456BA5";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "6D277457-4A0A-112C-58FD-62A0F7E50E37";
+	rename -uid "18B81EFB-4560-6386-0639-D691081D0DF9";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "B3D0033F-4850-FD9D-4C42-10933383A9C8";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "B768821C-444F-5FCE-68BB-5FB8D51716BD";
+	rename -uid "F5A40055-4C90-49AF-7B10-DAB41FDB5C83";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "0CB48509-4800-4AF3-7494-BEA071746751";
 	setAttr ".g" yes;
@@ -338,14 +338,20 @@ createNode type -n "type1";
 	setAttr ".numberOfShells" 6;
 	setAttr ".currentFont" -type "string" "Lucida Sans Unicode";
 	setAttr ".currentStyle" -type "string" "Regular";
-	setAttr ".manipulatorPositionsPP" -type "vectorArray" 1 0 0 0 ;
-	setAttr ".manipulatorWordPositionsPP" -type "vectorArray" 1 0 0 0 ;
+	setAttr ".manipulatorPositionsPP" -type "vectorArray" 20 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 0 0 0 ;
+	setAttr ".manipulatorWordPositionsPP" -type "vectorArray" 2 0 0 0 0 0 0 ;
 	setAttr ".manipulatorLinePositionsPP" -type "vectorArray" 1 0 0 0 ;
-	setAttr ".manipulatorRotationsPP" -type "vectorArray" 1 0 0 0 ;
-	setAttr ".manipulatorWordRotationsPP" -type "vectorArray" 1 0 0 0 ;
+	setAttr ".manipulatorRotationsPP" -type "vectorArray" 20 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 0 0 0 ;
+	setAttr ".manipulatorWordRotationsPP" -type "vectorArray" 2 0 0 0 0 0 0 ;
 	setAttr ".manipulatorLineRotationsPP" -type "vectorArray" 1 0 0 0 ;
-	setAttr ".manipulatorScalesPP" -type "vectorArray" 1 0 0 0 ;
-	setAttr ".manipulatorWordScalesPP" -type "vectorArray" 1 0 0 0 ;
+	setAttr ".manipulatorScalesPP" -type "vectorArray" 20 0 0 0 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+		 0 0 0 0 0 ;
+	setAttr ".manipulatorWordScalesPP" -type "vectorArray" 2 0 0 0 0 0 0 ;
 	setAttr ".manipulatorLineScalesPP" -type "vectorArray" 1 0 0 0 ;
 	setAttr ".alignmentAdjustments" -type "doubleArray" 1 0 ;
 	setAttr ".manipulatorMode" 0;

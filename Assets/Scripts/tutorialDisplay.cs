@@ -20,6 +20,10 @@ public class tutorialDisplay : MonoBehaviour {
         {
             tutorial.text = "";
             player.GetComponent<charControl>().canMove = true;
+            if (crowd.isPlaying == false)
+            {
+                crowd.Play();
+            }
             //crowd.Play();
         }
         else if (displayTime < 3.25f)
