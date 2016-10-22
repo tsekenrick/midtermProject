@@ -3,13 +3,13 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class finishLine : MonoBehaviour {
-    int currentStage = SceneManager.GetActiveScene().buildIndex;
+    int currentStage;
     Scene scene;
     public float timeElapsed;
     // Use this for initialization
     void Start () {
-	
-	}
+        int currentStage = SceneManager.GetActiveScene().buildIndex;
+    }
 	
 	// Update is called once per frame
 	void Update () {

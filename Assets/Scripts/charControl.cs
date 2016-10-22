@@ -24,7 +24,7 @@ public class charControl : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        regenRate = Time.deltaTime;
+        regenRate = 1f;
         staminaCap = 3f;
         stamina = 3f;
         recoveryCap = 5f;
@@ -33,6 +33,7 @@ public class charControl : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             canMove = false;
+            //regenRate = 100f;
         }
         else
         {
@@ -46,14 +47,14 @@ public class charControl : MonoBehaviour
         {
             //stamina += 2;
             staminaCap += 1;
-            regenRate = 3f * Time.deltaTime;
+            regenRate = 2f;
         }
 
         if (wasFatigueds2 == 0 && (SceneManager.GetActiveScene().buildIndex == 2))
         {
             //stamina += 2;
             staminaCap += 1;
-            regenRate = 5f * Time.deltaTime;
+            regenRate = 4f;
 
         }
 
@@ -91,7 +92,7 @@ public class charControl : MonoBehaviour
             sprinting = false;
             if (stamina < staminaCap)
             {
-                stamina += regenRate;
+                stamina += regenRate * Time.deltaTime;
             }
 
         }
@@ -112,7 +113,7 @@ public class charControl : MonoBehaviour
 
         if (fatigued)
         {
-            recoveryRate -= regenRate;
+            recoveryRate -= regenRate * Time.deltaTime;
             moveSpeed = 3f;
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
